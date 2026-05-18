@@ -6,7 +6,7 @@
 /*   By: jay-k <jay-k@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 12:02:17 by jkrishna          #+#    #+#             */
-/*   Updated: 2026/05/18 21:25:53 by jay-k            ###   ########.fr       */
+/*   Updated: 2026/05/18 22:25:50 by jay-k            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_node	*new_t_node(int num)
 		return (NULL);
 	newn->content = malloc(sizeof(int));
 	if (!newn->content)
-		return (free(newn),NULL);
+		return (free(newn), NULL) ;
 	*newn->content = num;
 	newn->index = 0;
 	newn->next = NULL;
@@ -47,6 +47,7 @@ int	is_sorted(t_node *a)
 	}
 	return (1);
 }
+
 int	stack_size(t_node *a)
 {
 	int		size;
@@ -63,69 +64,74 @@ int	stack_size(t_node *a)
 	}
 	return (size);
 }
-int	find_max(t_node *b)
+
+int	find_min(t_node *a)
 {
-	int		max;
 	t_node	*current;
-	int		index;
-
-	if (!b)
-		return (0);
-	current = b;
-	max = *current->content;
-	index = 1;
-	while (current != NULL )
-	{
-		if (*current->content > max)
-			max = *current->content;
-		current = current->next;
-		index++;
-	}
-	return (index);
-}
-
-int	find_min(t_node *b)
-{
 	int		min;
-	t_node	*current;
-	int		index;
+	int		min_index;
+	int		current_index;
 
-	if (!b)
+	if (!a)
 		return (0);
-	current = b;
+	current = a;
 	min = *current->content;
-	index = 1;
+	min_index = 0;
+	current_index = 0;
 	while (current != NULL )
 	{
 		if (*current->content < min)
+		{
 			min = *current->content;
+			min_index = current_index;
+		}
+		current_index++;
 		current = current->next;
-		index++;
 	}
-	return (index);
+	return (min_index);
 }
 
-void	
-int	insertion_sort(t_node *b)
+void	rotation(t_node *a, int index, int stash_size)
 {
-	int	i;
-
-	i = 1;
-	while()
-
+	if (index <= stash_size / 2)
+	{
+		while (index > 0)
+		{
+			ra(a);
+			index--;
+		}
+	}
+	else
+	{
+		while (stack_size(a) - index > 0)
+		{
+			rra(a);
+			index--;
+		}
+	}
+	return;
 }
 
-//  void	inserion_sort(t_node **a, t_node **b)
-// {
+void	inserion_sort(t_node **a, t_node **b)
+{
+	int	index;
+	
+ 	if (!a || is_sorted(*a))
+		return;
+	if (stack_size(*a) == 1)
+		return;
+	if (stack_size(*a) == 2)
+		s(a);
+	while(stack_size(*a) > 2)
+	{
+			index = find_min(*a);
+			rotation(*a, index, stack_size(*a));
+			pa(b);
+	}
+	if (*(*a)->content > *(*a)->next->content)
+		sa(a);
+	while (*b != NULL)
+		pa(a);
+	return;
+}
 
-//  	if (!a || ft_sorted(a))
-// 		return(a);
-// 	while (a->next != NULL)
-// 	{
-// 		pb();
-// 			while (*b->content > *a->content)
-// 				ra();
-// 		pa()
-// 	}
-// 	return (a);
-// }
