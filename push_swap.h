@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gvoelkne <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jkrishna <jkrishna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 13:29:44 by gvoelkne          #+#    #+#             */
-/*   Updated: 2026/05/15 12:10:23 by gvoelkne         ###   ########.fr       */
+/*   Updated: 2026/05/18 16:02:54 by jkrishna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,34 +19,37 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct s_list
+typedef struct t_node
 {
-	void			*content;
-	struct s_list	*next;
-}					t_list;
+	int				index;
+	int				*content;
+	struct t_node	*prev;
+	struct t_node	*next;
+}					t_node;
 
-typedef enum operation {
-	A_SWAP_TOP_TWO_ELEMS, // sa
-	B_SWAP_TOP_TWO_ELEMS, // sb
-	AB_SWAP_TOP_TWO_ELEMS, // ss
+typedef enum s_algo_config
+{
+	SIMPLE,
+	MEDIUM,
+	COMPLEX,
+	ADAPTIVE
+}					e_algo_config;
 
-	A_PUSH_TOP_ELM_TO_B, // pb
-	B_PUSH_TOP_ELM_TO_A, // pa
+typedef struct s_args
+{
+	int				*nums;
+	e_algo_config	algo_config;
+	int				benchmark_enabled;
+}					t_args;
 
-	A_MOVE_TOP_ELEM_TO_BOTTOM, // ra
-	B_MOVE_TOP_ELEM_TO_BOTTOM, // rb
-	AB_MOVE_TOP_ELEM_TO_BOTTOM, // rr
-
-	A_MOVE_BOTTOM_ELEM_TO_TOP, // rra
-	B_MOVE_BOTTOM_ELEM_TO_TOP, // rrb
-	AB_MOVE_BOTTOM_ELEM_TO_TOP, // rrr
-} e_stack_op;
-	
-
+char				*ft_substr(char const *s, unsigned int start, size_t len);
+char				**ft_split(char const *s, char *targets);
+size_t				ft_strlen(const char *s);
+char				*ft_strdup(const char *s);
+int					*ft_atoi(const char *nptr);
+int					is_sorted(t_node *a);
 
 #endif
-
-
 
 /*
 int					ft_atoi(const char *nptr);
@@ -68,9 +71,8 @@ char				*ft_strchr(const char *s, int c);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
 size_t				ft_strlcpy(char *dst, const char *src, size_t size);
 
-size_t				ft_strlen(const char *s);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
-char				*ft_strnstr(const char *big, const char *little,
+char	*ft_strnstr(const char *big, const char *little,
 						size_t len);
 char				*ft_strrchr(const char *s, int c);
 
@@ -78,12 +80,9 @@ int					ft_toupper(int c);
 int					ft_tolower(int c);
 
 void				*ft_calloc(size_t nmemb, size_t size);
-char				*ft_strdup(const char *s);
 
-char				*ft_substr(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s1, char const *set);
-char				**ft_split(char const *s, char c);
 
 char				*ft_itoa(int n);
 char				*ft_strmapi(const char *s, char (*f)(unsigned int, char));
@@ -102,6 +101,6 @@ t_list				*ft_lstlast(t_list *lst);
 void				ft_lstdelone(t_list *lst, void (*del)(void *));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
-t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 */
