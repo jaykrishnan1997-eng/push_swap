@@ -1,20 +1,7 @@
+// THIS IS CLAUDE GENERATED !!!
+// to run
+// cc -Wall -Wextra -Werror AI_main.c helper_fun1.c helper_fun2.c iteration.c operators1.c operators2.c push_swap.h
 #include "push_swap.h"
-
-t_node	*new_node(int value)
-{
-	t_node	*node;
-	int		*content;
-
-	node = malloc(sizeof(t_node));
-	content = malloc(sizeof(int));
-	if (!node || !content)
-		return (NULL);
-	*content = value;
-	node->content = content;
-	node->next = NULL;
-	node->prev = NULL;
-	return (node);
-}
 
 void	append(t_node **head, int value)
 {
@@ -47,48 +34,42 @@ void	free_list(t_node *head)
 	}
 }
 
+static void	print_list(t_node *head)
+{
+	while (head)
+	{
+		printf("%d ", *head->content);
+		head = head->next;
+	}
+	printf("\n");
+}
+
 int	main(void)
 {
-	t_node *a;
+	t_node	*a;
+	t_node	*b;
 
-	// test1, sorted
 	a = NULL;
+	b = NULL;
+
+	append(&a, 3);
 	append(&a, 1);
 	append(&a, 2);
-	append(&a, 3);
-	append(&a, 4);
-	append(&a, 5);
-	append(&a, 6);
-	printf("sorted [1,2,3,4,5,6] : %s\n", is_sorted(a) ? "YES" : "NO");
-	free_list(a);
-
-	// test2, unsorted
-	a = NULL;
-	append(&a, 1);
-	append(&a, 2);
-	append(&a, 3);
 	append(&a, 8);
 	append(&a, 5);
 	append(&a, 6);
-	printf("sorted [1,2,3,4,5,6] : %s\n", is_sorted(a) ? "YES" : "NO");
-	free_list(a);
 
-	// test3 traverse backward
-	a = NULL;
-	append(&a,10);
-	append(&a,20);
-	append(&a,30);
-	t_node *tail = a;
-	while (tail->next)
-		tail = tail->next;
-	printf("backwards [30,20,10]: ");
-	while (tail)
-	{
-		printf("%d ", *tail->content);
-		tail = tail->prev;
-	}
-	printf("\n");
+	printf("before: ");
+	print_list(a);
+	printf("sorted before: %s\n", is_sorted(a) ? "YES" : "NO");
+
+	insertion_sort(&a, &b);
+
+	printf("after:  ");
+	print_list(a);
+	printf("sorted after:  %s\n", is_sorted(a) ? "YES" : "NO");
+
 	free_list(a);
+	free_list(b);
 	return (0);
-
 }

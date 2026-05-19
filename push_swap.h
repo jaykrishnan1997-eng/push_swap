@@ -6,7 +6,7 @@
 /*   By: jkrishna <jkrishna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 13:29:44 by gvoelkne          #+#    #+#             */
-/*   Updated: 2026/05/18 16:02:54 by jkrishna         ###   ########.fr       */
+/*   Updated: 2026/05/19 15:25:44 by jkrishna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,24 @@ size_t				ft_strlen(const char *s);
 char				*ft_strdup(const char *s);
 int					*ft_atoi(const char *nptr);
 int					is_sorted(t_node *a);
+int					stack_size(t_node *a);
+int					find_min(t_node *a);
+t_node				*new_node(int value);
+void				add_front(t_node **a, int value, int index);
+void				del_front(t_node **a);
+void				insertion_sort(t_node **a, t_node **b);
+void				ra(t_node **a);
+void				rb(t_node **b);
+void				rr(t_node **a, t_node **b);
+void				rra(t_node **a);
+void				rrb(t_node **b);
+void				rrr(t_node **a, t_node **b);
+void				sa(t_node **a);
+void				sb(t_node **b);
+void				ss(t_node **a, t_node **b);
+void				pb(t_node **a, t_node **b);
+void				pa(t_node **b, t_node **a);
+
 
 #endif
 
